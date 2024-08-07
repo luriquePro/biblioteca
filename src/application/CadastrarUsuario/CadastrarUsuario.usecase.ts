@@ -1,17 +1,10 @@
-import { GerarId } from '../../common/GerarId';
-import { ICadastrarUsuarioDTO, ICadastrarUsuarioReturnDTO } from './CadastrarUsuario.interfaces';
+import { GerarId } from "../../common/GerarId";
+import { ICadastrarUsuarioDTO, ICadastrarUsuarioReturnDTO } from "./CadastrarUsuario.interfaces";
 
 class CadastrarUsuarioUseCase {
   constructor() {}
 
-  public async handle({
-    nomeCompleto,
-    cpf,
-    telefone,
-    email,
-    dataNascimento,
-    endereco
-  }: ICadastrarUsuarioDTO): Promise<ICadastrarUsuarioReturnDTO> {
+  public async handle({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco }: ICadastrarUsuarioDTO): Promise<void> {
     const dadosDoUsuario: ICadastrarUsuarioReturnDTO = {
       id: GerarId(),
       nome_completo: nomeCompleto,
@@ -24,8 +17,6 @@ class CadastrarUsuarioUseCase {
     };
 
     // await usuarioRepositorio.cadastrar(dadosDoUsuario);
-
-    return dadosDoUsuario;
   }
 }
 
