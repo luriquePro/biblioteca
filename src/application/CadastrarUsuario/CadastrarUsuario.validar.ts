@@ -1,23 +1,34 @@
-import { GerarId } from "../../common/GerarId";
-import { ICadastrarUsuarioDTO, ICadastrarUsuarioReturnDTO, IUsuarioRepositorio } from "./CadastrarUsuario.interfaces";
+import * as yup from "yup";
 
-class CadastrarUsuarioUseCase {
-  constructor(private readonly UsuariosRepositorio: IUsuarioRepositorio) {}
+import { YupValidator } from "../../common/YupValidator";
+import { ICadastrarUsuarioDTO } from "./CadastrarUsuario.interfaces";
+import { CpfValidator } from "../../common/CpfValidator";
 
-  public async handle({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco }: ICadastrarUsuarioDTO): Promise<void> {
-    const dadosDoUsuario: ICadastrarUsuarioReturnDTO = {
-      id: GerarId(),
-      nome_completo: nomeCompleto,
-      cpf,
-      telefone,
-      endereco,
-      email,
-      data_nascimento: dataNascimento,
-      data_cadastro: new Date()
-    };
+const CadastrarUsuarioValidar = async ({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco }: ICadastrarUsuarioDTO) => {
+  const cadastrarUsuarioDTO: ICadastrarUsuarioDTO = { nomeCompleto, cpf, telefone, email, dataNascimento, endereco };
 
-    this.UsuariosRepositorio.cadastrar(dadosDoUsuario);
-  }
-}
+  const setShapeValidation = {
+    nomeCompleto: yup.string().required("Nome Completo é obrigatorio").min(3),
+    cpf: yup
+      .string()
+      .required("CPF é obrigatorio")
+      .min(11)
+      .max(11)
+      .test("cpf", "CPF inválido", (value) => CpfValidator(value)),
+    telefone: yup
+      .string()
+      .required("Telefone é obrigatorio")
+      .min(11)
+      .max(11)
+      .test("phone", "Telefone inválido", (value) => {
+        const validPhone = value.replace(/[^0-9]+/g, "").match(/^(\d{2})(\d{5})(\d{4})$/);
+        return !!validPhone && validPhone[0] === value;
+      }),
+    email: yup.string().required("Email é obrigatorio").email("Email inválido"),
+    dataNascimento: yup.date().required("Data de Nascimento é obrigatorio"),
+    endereco: yup.string().required("Endereço é obrigatorio")
+  };
+  await YupValidator(setShapeValidation, cadastrarUsuarioDTO);
+};
 
-export { CadastrarUsuarioUseCase };
+export { CadastrarUsuarioValidar };

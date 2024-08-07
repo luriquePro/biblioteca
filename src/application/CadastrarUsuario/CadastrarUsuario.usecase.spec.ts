@@ -9,8 +9,8 @@ describe("cadastrar Usuário Casos de Uso", () => {
   test("Deve-se cadastrar um novo Usuário", async () => {
     const usuarioDTO: ICadastrarUsuarioDTO = {
       nomeCompleto: "nome_valido",
-      cpf: "cpf_valido",
-      telefone: "telefone_valido",
+      cpf: "71079969403",
+      telefone: "81999999999",
       email: "email_valido@email.com",
       dataNascimento: new Date("2004-01-01"),
       endereco: "endereco_valido"
