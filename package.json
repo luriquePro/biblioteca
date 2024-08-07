@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "tsx --watch src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,5 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4"
   }
 }
