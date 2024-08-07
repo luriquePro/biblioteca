@@ -9,4 +9,6 @@ CadastrarUsuarioUseCaseInstance.handle({
   email: '123',
   dataNascimento: new Date('2004-01-01'),
   endereco: '123'
-}).then((response) => console.log(response));
+}).then((response) => {
+  console.log(response);
+});
