@@ -1,4 +1,4 @@
-## Reunião 
+## Reunião
 
 > Somos uma biblioteca pequena e gostariamos de controlar a nossa entrada e saída de livros.
 > Queremos cadastrar o usuário
@@ -15,34 +15,34 @@
 ## UseCases
 
 [] Cadastrar um novo usuário
-    - CPF e email devem ser únicos
+[X] - Validar Os Campos
+[] - CPF e email devem ser únicos
 
 [] Buscar um usuário por CPF
-    - Retornar um usuário ou Vazio
+[] - Retornar um usuário ou Vazio
 
 [] Cadastrar um novo livro
-    - ISBN deve ser único
+[] - ISBN deve ser único
 
 [] Buscar livro por nome ou ISBN
-    - Retornar livros ou Vazio
+[] - Retornar livros ou Vazio
 
 [] Emprestar um livro ao usuario
-    - A data de retorno não pode ser menor que a data de saída
-    - Um usuário não pode estar com mais de um livro com o mesmo ISBN ao mesmo tempo
-    - Um usuário pode ter mais de um livro com ISBN diferentes
-    - Ao cadastrar um empréstimo, será enviado um email automaticamente informando o nome do livro, nome do usuário, CPF, a data de saída e data de retorno
+[] - A data de retorno não pode ser menor que a data de saída
+[] - Um usuário não pode estar com mais de um livro com o mesmo ISBN ao mesmo tempo
+[] - Um usuário pode ter mais de um livro com ISBN diferentes
+[] - Ao cadastrar um empréstimo, será enviado um email automaticamente informando o nome do livro, nome do usuário, CPF, a data de saída e data de retorno
 
 [] Devolver livro
-    - Caso usuário atrase, será gerado uma multa fixa de R$ 10,00 + R$ 1,50 /dia
-    - Enviar um email a cada 10 dias informando o valor da multa
+[] - Caso usuário atrase, será gerado uma multa fixa de R$ 10,00 + R$ 1,50 /dia
+[] - Enviar um email a cada 10 dias informando o valor da multa
 
 [] Data próxima a devolução
-    - Quando estiver faltando 2 dias enviar um email informando a devolução
-    - Quando estiver no dia da devolução, enviar um email informando
+[] - Quando estiver faltando 2 dias enviar um email informando a devolução
+[] - Quando estiver no dia da devolução, enviar um email informando
 
 [] Listar emprestimos
-    - Mostrar todos os empréstimos pendentes, com nome do livro, usuário, cpf, data de saída e data de retorno. 
-    - Ordernar por data de retorno mais antiga (Livro mais atrasado)
-
+[] - Mostrar todos os empréstimos pendentes, com nome do livro, usuário, cpf, data de saída e data de retorno.
+[] - Ordernar por data de retorno mais antiga (Livro mais atrasado)
 
 ## Estruturas
