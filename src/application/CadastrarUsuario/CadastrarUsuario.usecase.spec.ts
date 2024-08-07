@@ -1,7 +1,11 @@
-import { ICadastrarUsuarioDTO } from "./CadastrarUsuario.interfaces";
+import { ICadastrarUsuarioDTO, IUsuarioRepositorio } from "./CadastrarUsuario.interfaces";
 import { CadastrarUsuarioUseCase } from "./CadastrarUsuario.usecase";
 
 describe("cadastrar Usuário Casos de Uso", () => {
+  const UsuariosRepositorio: IUsuarioRepositorio = {
+    cadastrar: jest.fn()
+  };
+
   test("Deve-se cadastrar um novo Usuário", async () => {
     const usuarioDTO: ICadastrarUsuarioDTO = {
       nomeCompleto: "nome_valido",
@@ -12,9 +16,11 @@ describe("cadastrar Usuário Casos de Uso", () => {
       endereco: "endereco_valido"
     };
 
-    const sut = new CadastrarUsuarioUseCase().handle;
-    const output = await sut(usuarioDTO);
+    const sut = new CadastrarUsuarioUseCase(UsuariosRepositorio);
+    const output = await sut.handle(usuarioDTO);
 
     expect(output).toBeUndefined();
+    expect(UsuariosRepositorio.cadastrar).toHaveBeenCalledTimes(1);
+    expect(UsuariosRepositorio.cadastrar).toHaveReturnedWith(undefined);
   });
 });

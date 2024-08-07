@@ -17,3 +17,7 @@ export interface ICadastrarUsuarioReturnDTO {
   data_nascimento: Date;
   data_cadastro: Date;
 }
+
+export interface IUsuarioRepositorio {
+  cadastrar: (dadosDoUsuario: ICadastrarUsuarioReturnDTO) => Promise<void>;
+}
