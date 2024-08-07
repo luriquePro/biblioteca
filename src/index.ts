@@ -1,4 +1,4 @@
-import { CadastrarUsuarioUseCase } from './application/CadastrarUsuario.usecase';
+import { CadastrarUsuarioUseCase } from './application/CadastrarUsuario/CadastrarUsuario.usecase';
 
 const CadastrarUsuarioUseCaseInstance = new CadastrarUsuarioUseCase();
 

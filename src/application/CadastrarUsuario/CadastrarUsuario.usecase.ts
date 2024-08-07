@@ -1,4 +1,4 @@
-import { GerarId } from '../common/GerarId.common';
+import { GerarId } from '../../common/GerarId';
 import { ICadastrarUsuarioDTO, ICadastrarUsuarioReturnDTO } from './CadastrarUsuario.interfaces';
 
 class CadastrarUsuarioUseCase {
