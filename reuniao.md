@@ -19,7 +19,7 @@
 [X] - CPF deve ser um campo único
 [X] - Telefone deve ser um campo único
 [X] - Email devem ser únicos
-[] - Criar Entidade e repositorio Mongo
+[X] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
 [] Buscar um usuário por CPF
