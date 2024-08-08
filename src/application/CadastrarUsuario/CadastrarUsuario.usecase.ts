@@ -10,8 +10,8 @@ class CadastrarUsuarioUseCase {
     CadastrarUsuarioValidar({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco });
 
     const [usuarioCadastradoComEmail, usuarioCadastradoComCpf, usuarioCadastradoComTelefone] = await Promise.all([
-      this.UsuariosRepositorio.buscarUsuario({ cpf }),
       this.UsuariosRepositorio.buscarUsuario({ email }),
+      this.UsuariosRepositorio.buscarUsuario({ cpf }),
       this.UsuariosRepositorio.buscarUsuario({ telefone })
     ]);
 

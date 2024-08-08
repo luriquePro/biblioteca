@@ -2,16 +2,22 @@ import {
   IBuscarUsuarioFiltroDTO,
   ICadastrarUsuarioReturnDTO,
   IUsuarioRepositorio
-} from "../application/CadastrarUsuario/CadastrarUsuario.interfaces";
+} from "../../application/CadastrarUsuario/CadastrarUsuario.interfaces";
 
 export class UsuarioRepositorioMemoria implements IUsuarioRepositorio {
-  public users: any[] = [];
+  public users: ICadastrarUsuarioReturnDTO[] = [];
 
-  public async cadastrar(dadosDoUsuario: ICadastrarUsuarioReturnDTO): Promise<void> {
-    return new Promise((resolve) => {
-      this.users.push(dadosDoUsuario);
-      return resolve(undefined);
-    });
+  constructor() {
+    this.users = [];
+  }
+
+  public async listar(): Promise<ICadastrarUsuarioReturnDTO[]> {
+    return this.users;
+  }
+
+  public async cadastrar(dadosDoUsuario: ICadastrarUsuarioReturnDTO): Promise<ICadastrarUsuarioReturnDTO> {
+    this.users.push(dadosDoUsuario);
+    return dadosDoUsuario;
   }
 
   public async buscarUsuario(filter: IBuscarUsuarioFiltroDTO): Promise<ICadastrarUsuarioReturnDTO | null> {
