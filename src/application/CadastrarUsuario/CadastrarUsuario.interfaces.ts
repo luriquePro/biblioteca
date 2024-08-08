@@ -1,3 +1,5 @@
+import { IUsuarioDTO } from "../../types/Usuario.types";
+
 export interface ICadastrarUsuarioDTO {
   nomeCompleto: string;
   cpf: string;
@@ -27,7 +29,8 @@ export interface IBuscarUsuarioFiltroDTO {
 }
 
 export interface IUsuarioRepositorio {
-  listar: () => Promise<ICadastrarUsuarioReturnDTO[]>;
-  cadastrar: (dadosDoUsuario: ICadastrarUsuarioReturnDTO) => Promise<ICadastrarUsuarioReturnDTO>;
-  buscarUsuario: (filtro: IBuscarUsuarioFiltroDTO) => Promise<ICadastrarUsuarioReturnDTO | null>;
+  listar: () => Promise<IUsuarioDTO[]>;
+  cadastrar: (dadosDoUsuario: ICadastrarUsuarioReturnDTO) => Promise<IUsuarioDTO>;
+  buscarUsuario: (filtro: IBuscarUsuarioFiltroDTO) => Promise<IUsuarioDTO | null>;
+  buscarUsuarios: (filtro: IBuscarUsuarioFiltroDTO) => Promise<IUsuarioDTO[]>;
 }
