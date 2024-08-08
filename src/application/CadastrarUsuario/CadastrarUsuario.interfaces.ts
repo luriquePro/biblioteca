@@ -18,7 +18,7 @@ export interface ICadastrarUsuarioReturnDTO {
     data_cadastro: Date;
 }
 
-interface IBuscarUsuarioFiltroDTO {
+export interface IBuscarUsuarioFiltroDTO {
     id?: string;
     nome_completo?: string;
     cpf?: string;
