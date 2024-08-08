@@ -49,4 +49,6 @@
 [] - Mostrar todos os empréstimos pendentes, com nome do livro, usuário, cpf, data de saída e data de retorno.
 [] - Ordernar por data de retorno mais antiga (Livro mais atrasado)
 
+[] - Adicionar DOTENV
+
 ## Estruturas
