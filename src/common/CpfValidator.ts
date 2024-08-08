@@ -38,3 +38,4 @@ const CpfValidator = (cpf: string): boolean => {
 };
 
 export { CpfValidator };
+
