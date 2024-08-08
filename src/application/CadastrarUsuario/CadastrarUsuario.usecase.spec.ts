@@ -6,6 +6,7 @@ describe("cadastrar Usuário Casos de Uso", () => {
   const UsuariosRepositorio: IUsuarioRepositorio = {
     cadastrar: jest.fn(),
     buscarUsuario: jest.fn(),
+    buscarUsuarios: jest.fn(),
     listar: jest.fn().mockReturnValue([])
   };
 
