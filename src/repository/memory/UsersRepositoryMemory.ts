@@ -30,4 +30,14 @@ export class UsuarioRepositorioMemoria implements IUsuarioRepositorio {
       resolve(matchingUser || null);
     });
   }
+
+  public async buscarUsuarios(filter: IBuscarUsuarioFiltroDTO): Promise<IUsuarioDTO[]> {
+    return new Promise((resolve) => {
+      const filterKeys = Object.keys(filter) as (keyof IBuscarUsuarioFiltroDTO)[];
+      const matchingUsers = this.users.filter((user) => {
+        return filterKeys.every((key) => user[key] == filter[key]);
+      });
+      resolve(matchingUsers);
+    });
+  }
 }
