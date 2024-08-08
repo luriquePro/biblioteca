@@ -14,11 +14,11 @@
 
 ## UseCases
 
-[] Cadastrar um novo usuário
+[X] Cadastrar um novo usuário
 [X] - Validar Os Campos
-[] - CPF deve ser um campo único
-[] - Telefone deve ser um campo único
-[] - Email devem ser únicos
+[X] - CPF deve ser um campo único
+[X] - Telefone deve ser um campo único
+[X] - Email devem ser únicos
 
 [] Buscar um usuário por CPF
 [] - Retornar um usuário ou Vazio
