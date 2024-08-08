@@ -1,4 +1,3 @@
-import { UsuarioRepositorioMemoria } from "../../repository/UsersRepository.memomy";
 import { ICadastrarUsuarioDTO, IUsuarioRepositorio } from "./CadastrarUsuario.interfaces";
 import { CadastrarUsuarioUseCase } from "./CadastrarUsuario.usecase";
 
