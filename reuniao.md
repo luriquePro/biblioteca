@@ -16,7 +16,9 @@
 
 [] Cadastrar um novo usuário
 [X] - Validar Os Campos
-[] - CPF, telefone e email devem ser únicos
+[] - CPF deve ser um campo único
+[] - Telefone deve ser um campo único
+[] - Email devem ser únicos
 
 [] Buscar um usuário por CPF
 [] - Retornar um usuário ou Vazio

@@ -1,4 +1,5 @@
 import { GerarId } from "../../common/GerarId";
+import { BadRequestError } from "../../shared/errors/AppError";
 import { ICadastrarUsuarioDTO, ICadastrarUsuarioReturnDTO, IUsuarioRepositorio } from "./CadastrarUsuario.interfaces";
 import { CadastrarUsuarioValidar } from "./CadastrarUsuario.validar";
 
@@ -7,6 +8,24 @@ class CadastrarUsuarioUseCase {
 
   public async handle({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco }: ICadastrarUsuarioDTO): Promise<void> {
     CadastrarUsuarioValidar({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco });
+
+    const [usuarioCadastradoComEmail, usuarioCadastradoComCpf, usuarioCadastradoComTelefone] = await Promise.all([
+      this.UsuariosRepositorio.buscarUsuario({ cpf }),
+      this.UsuariosRepositorio.buscarUsuario({ email }),
+      this.UsuariosRepositorio.buscarUsuario({ telefone })
+    ]);
+
+    if (usuarioCadastradoComEmail) {
+      throw new BadRequestError("Email já cadastrado");
+    }
+
+    if (usuarioCadastradoComCpf) {
+      throw new BadRequestError("CPF já cadastrado");
+    }
+
+    if (usuarioCadastradoComTelefone) {
+      throw new BadRequestError("Telefone já cadastrado");
+    }
 
     const dadosDoUsuario: ICadastrarUsuarioReturnDTO = {
       id: GerarId(),
@@ -19,7 +38,7 @@ class CadastrarUsuarioUseCase {
       data_cadastro: new Date()
     };
 
-    this.UsuariosRepositorio.cadastrar(dadosDoUsuario);
+    await this.UsuariosRepositorio.cadastrar(dadosDoUsuario);
   }
 }
 
