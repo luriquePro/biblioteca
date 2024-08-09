@@ -1,15 +1,4 @@
-import { IGeneroDTO } from "../../../types/Genero.types";
-
 export interface ICadastrarGeneroDTO {
   genero: string;
 }
 
-export interface IGeneroFiltroDTO {
-  genero?: string;
-}
-
-export interface IGeneroRepositorio {
-  cadastrar: (dadosDoGenero: IGeneroDTO) => Promise<void>;
-  buscarGenero: (filtro: IGeneroFiltroDTO) => Promise<IGeneroDTO | null>;
-  listarGeneros: () => Promise<IGeneroDTO[]>;
-}

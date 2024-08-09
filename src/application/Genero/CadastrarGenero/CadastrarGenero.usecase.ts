@@ -1,6 +1,7 @@
 import { GerarId } from "../../../common/GerarId";
 import { IGeneroDTO } from "../../../types/Genero.types";
-import { ICadastrarGeneroDTO, IGeneroRepositorio } from "./CadastrarGenero.interface";
+import { IGeneroRepositorio } from "../Genero.interfaces";
+import { ICadastrarGeneroDTO } from "./CadastrarGenero.interface";
 import { CadastrarGeneroValidar } from "./CadastrarGenero.validar";
 
 class CadastrarGeneroUseCase {

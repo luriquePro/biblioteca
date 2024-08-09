@@ -1,5 +1,5 @@
 import { GerarId } from "../../../common/GerarId";
-import { IGeneroRepositorio } from "./CadastrarGenero.interface";
+import { IGeneroRepositorio } from "../Genero.interfaces";
 import { CadastrarGeneroUseCase } from "./CadastrarGenero.usecase";
 
 describe("CadastrarGeneroUseCase", () => {

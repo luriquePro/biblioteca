@@ -1,5 +1,5 @@
 import { IGeneroDTO } from "../../../types/Genero.types";
-import { IGeneroRepositorio } from "../CadastrarGenero/CadastrarGenero.interface";
+import { IGeneroRepositorio } from "../Genero.interfaces";
 
 class ListarGenerosUseCase {
   constructor(private readonly GeneroRepositorio: IGeneroRepositorio) {}
