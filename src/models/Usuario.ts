@@ -1,17 +1,7 @@
 import { Schema, model, Document } from "mongoose";
+import { IUsuarioDTO } from "../types/Usuario.types";
 
-interface IUsuario {
-  id: string;
-  nome_completo: string;
-  cpf: string;
-  email: string;
-  telefone: string;
-  data_nascimento: Date;
-  data_cadastro: Date;
-  endereco: string;
-}
-
-interface Usuario extends Partial<Omit<Document, "id">>, IUsuario {}
+interface Usuario extends Partial<Omit<Document, "id">>, IUsuarioDTO {}
 
 const UsuarioSchema = new Schema<Usuario>(
   {
