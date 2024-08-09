@@ -3,7 +3,7 @@ import { ListarGenerosUseCase } from "./ListarGeneros.usecase";
 
 describe("ListarGenerosUseCase", () => {
   const GeneroRepositorio: IGeneroRepositorio = {
-    cadastrar: jest.fn().mockResolvedValue([]),
+    cadastrar: jest.fn(),
     buscarGenero: jest.fn(),
     listarGeneros: jest.fn().mockResolvedValue(null)
   };
