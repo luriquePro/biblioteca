@@ -1,5 +1,5 @@
 import { IUsuarioDTO } from "../../../types/Usuario.types";
-import { IUsuarioRepositorio } from "../CadastrarUsuario/CadastrarUsuario.interfaces";
+import { IUsuarioRepositorio } from "../Usuario.interfaces";
 import { BuscarUsuarioPorCPFUseCase } from "./BuscarUsuarioPorCPF.usecase";
 
 describe("BuscarUsuarioPorCPFUseCase Casos de Uso", () => {

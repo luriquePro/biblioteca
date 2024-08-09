@@ -1,5 +1,6 @@
 import { UsuarioRepositorioMemoria } from "../../../repository/memory/UsersRepositoryMemory";
-import { ICadastrarUsuarioDTO, IUsuarioRepositorio } from "./CadastrarUsuario.interfaces";
+import { IUsuarioRepositorio } from "../Usuario.interfaces";
+import { ICadastrarUsuarioDTO } from "./CadastrarUsuario.interfaces";
 import { CadastrarUsuarioUseCase } from "./CadastrarUsuario.usecase";
 
 describe("cadastrar Usuário Casos de Uso", () => {

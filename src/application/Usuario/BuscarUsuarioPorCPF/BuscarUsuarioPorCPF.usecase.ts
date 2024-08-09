@@ -1,6 +1,6 @@
 import { UnauthorizedError } from "../../../shared/errors/AppError";
 import { IUsuarioDTO } from "../../../types/Usuario.types";
-import { IBuscarUsuarioPorCPFDTO, IUsuarioRepositorio } from "../CadastrarUsuario/CadastrarUsuario.interfaces";
+import { IBuscarUsuarioPorCPFDTO, IUsuarioRepositorio } from "../Usuario.interfaces";
 
 class BuscarUsuarioPorCPFUseCase {
   constructor(private readonly UsuariosRepositorio: IUsuarioRepositorio) {}

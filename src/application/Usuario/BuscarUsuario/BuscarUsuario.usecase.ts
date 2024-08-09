@@ -1,5 +1,5 @@
 import { IUsuarioDTO } from "../../../types/Usuario.types";
-import { IBuscarUsuarioFiltroDTO, IUsuarioRepositorio } from "../CadastrarUsuario/CadastrarUsuario.interfaces";
+import { IBuscarUsuarioFiltroDTO, IUsuarioRepositorio } from "../Usuario.interfaces";
 
 class BuscarUsuarioUseCase {
   constructor(private readonly UsuariosRepositorio: IUsuarioRepositorio) {}
