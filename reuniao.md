@@ -20,25 +20,33 @@
 [X] - Telefone deve ser um campo único
 [X] - Email devem ser únicos
 [X] - Criar Entidade e repositorio Mongo
-[] - Criar Rota e Controller
-
 [X] Buscar um usuário por CPF
 [X] - Retornar um usuário ou Vazio
-[] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
 [X] - Cadastrar Genero de Livros
 [X] - Genero deve ser um campo Unico
 
-[] - Listar Genero de Livros
+[X] - Listar Genero de Livros
 
-[] - Criar Entidade e repositorio Mongo
-[] - Criar Rota e Controller
+[] - Criar Entidade e repositorio de Genero no Mongo
+[] - Criar Rota e Controller de Genero
 
-[] - Cadastrar Autor de Livros
-[] - Listar Autores de Livros
-[] - Criar Entidade e repositorio Mongo
-[] - Criar Rota e Controller
+[X] - Cadastrar Autor de Livros
+[X] - Autor deve ser um campo unico
+
+[X] - Listar Autores de Livros
+
+[] - Criar Entidade e repositorio de Autor no Mongo
+[] - Criar Rota e Controller de Autor
+
+[] - Cadastrar Edita de Livros
+[] - Edita deve ser um campo Unico
+
+[] - Listar Editoras de Livros
+
+[] - Criar Entidade e repositorio de Editora no Mongo
+[] - Criar Rota e Controller de Editora
 
 [] Cadastrar um novo livro
 [] - ISBN deve ser único
