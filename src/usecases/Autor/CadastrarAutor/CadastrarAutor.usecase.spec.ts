@@ -10,7 +10,7 @@ describe("CadastrarAutorUseCase", () => {
     listarAutores: jest.fn().mockReturnValue([])
   };
 
-  test("Deve-se cadastrar um novo gênero", async () => {
+  test("Deve-se cadastrar um novo autor", async () => {
     const sut = new CadastrarAutorUseCase(AutorRepositorio);
     const output = await sut.handle({ autor: "autor_valido" });
 
@@ -22,7 +22,7 @@ describe("CadastrarAutorUseCase", () => {
     expect(AutorRepositorio.buscarAutor).toHaveBeenCalledTimes(1);
   });
 
-  test("Deve-se retornar erro se o gênero já está cadastrado", async () => {
+  test("Deve-se retornar erro se o autor já está cadastrado", async () => {
     const cadastrarAutorDTO: ICadastrarAutorDTO = { autor: "autor_existente" };
     const AutorDTO = { ...cadastrarAutorDTO, id: GerarId() };
 

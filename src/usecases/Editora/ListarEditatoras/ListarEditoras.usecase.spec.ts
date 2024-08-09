@@ -9,7 +9,7 @@ describe("ListarEditorasUseCase", () => {
     listarEditoras: jest.fn().mockResolvedValue(null)
   };
 
-  test("Deve-se listar os gêneros cadastrados", async () => {
+  test("Deve-se listar as editoras cadastradas", async () => {
     const listaEditoras: IEditoraDTO[] = [
       { id: "1", editora: "editora1" },
       { id: "2", editora: "editora2" },
