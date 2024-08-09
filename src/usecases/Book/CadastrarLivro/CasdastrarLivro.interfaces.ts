@@ -2,7 +2,7 @@ export interface ICadastrarLivroDTO {
   titulo: string;
   autores_ids: string[];
   generos_ids: string[];
-  editora: string;
+  editora_id: string;
   edicao: number;
   ISBN: string;
   quantidade: number;
