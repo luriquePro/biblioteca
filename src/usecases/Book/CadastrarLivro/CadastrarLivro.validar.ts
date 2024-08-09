@@ -3,7 +3,7 @@ import * as yup from "yup";
 
 import { YupValidator } from "../../../common/YupValidator";
 import { ISBNValidator } from "./../../../common/ISBNValidator";
-import { ICadastrarLivroDTO } from "./CasdastrarLivro.interfaces";
+import { ICadastrarLivroRawDTO } from "./CasdastrarLivro.interfaces";
 
 const CadastrarLivroValidar = async ({
   titulo,
@@ -17,8 +17,8 @@ const CadastrarLivroValidar = async ({
   descricao,
   valor_de_compra,
   valor_de_venda
-}: ICadastrarLivroDTO) => {
-  const cadastrarLivroDTO: ICadastrarLivroDTO = {
+}: ICadastrarLivroRawDTO) => {
+  const cadastrarLivroDTO: ICadastrarLivroRawDTO = {
     titulo,
     autores_ids,
     generos_ids,

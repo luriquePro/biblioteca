@@ -6,7 +6,8 @@ describe("ListarAutoresUseCase", () => {
   const AutorRepositorio: IAutorRepositorio = {
     cadastrar: jest.fn(),
     buscarAutor: jest.fn(),
-    listarAutores: jest.fn().mockResolvedValue(null)
+    listarAutores: jest.fn().mockResolvedValue(null),
+    buscarAutores: jest.fn().mockResolvedValue([])
   };
 
   test("Deve-se listar os Autores cadastrados", async () => {

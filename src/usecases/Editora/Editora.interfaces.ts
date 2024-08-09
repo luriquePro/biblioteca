@@ -8,4 +8,5 @@ export interface IEditoraRepositorio {
 
 export interface IEditoraFiltroDTO {
   editora?: string;
+  id?: string;
 }

@@ -1,8 +1,8 @@
-import { ICadastrarLivroDTO } from "./CasdastrarLivro.interfaces";
+import { ICadastrarLivroRawDTO } from "./CasdastrarLivro.interfaces";
 import { CadastrarLivroValidar } from "./CadastrarLivro.validar";
 
 describe("CadastrarLivroValidar", () => {
-  let validDTO: ICadastrarLivroDTO;
+  let validDTO: ICadastrarLivroRawDTO;
 
   beforeEach(() => {
     validDTO = {

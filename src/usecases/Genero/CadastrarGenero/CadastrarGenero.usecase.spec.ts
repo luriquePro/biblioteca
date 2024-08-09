@@ -6,7 +6,8 @@ describe("CadastrarGeneroUseCase", () => {
   const GeneroRepositorio: IGeneroRepositorio = {
     cadastrar: jest.fn(),
     buscarGenero: jest.fn().mockResolvedValue(null),
-    listarGeneros: jest.fn().mockReturnValue([])
+    listarGeneros: jest.fn().mockReturnValue([]),
+    buscarGeneros: jest.fn().mockReturnValue([])
   };
 
   test("Deve-se cadastrar um novo gênero", async () => {

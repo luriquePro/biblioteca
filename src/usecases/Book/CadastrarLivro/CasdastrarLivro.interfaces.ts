@@ -1,4 +1,6 @@
-export interface ICadastrarLivroDTO {
+import { ILivroDTO } from "../../../types/Livro.types";
+
+export interface ICadastrarLivroRawDTO {
   titulo: string;
   autores_ids: string[];
   generos_ids: string[];
@@ -11,3 +13,5 @@ export interface ICadastrarLivroDTO {
   valor_de_compra?: number;
   valor_de_venda?: number;
 }
+
+export interface ICadastrarLivroDTO extends ILivroDTO {}
