@@ -27,8 +27,11 @@
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
-[] - Cadastrar Genero de Livros
+[X] - Cadastrar Genero de Livros
+[X] - Genero deve ser um campo Unico
+
 [] - Listar Genero de Livros
+
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
