@@ -1,5 +1,5 @@
-import { ICadastrarUsuarioReturnDTO } from "../../application/Usuario/CadastrarUsuario/CadastrarUsuario.interfaces";
-import { IBuscarUsuarioFiltroDTO, IUsuarioRepositorio } from "../../application/Usuario/Usuario.interfaces";
+import { ICadastrarUsuarioReturnDTO } from "../../usecases/Usuario/CadastrarUsuario/CadastrarUsuario.interfaces";
+import { IBuscarUsuarioFiltroDTO, IUsuarioRepositorio } from "../../usecases/Usuario/Usuario.interfaces";
 import { Usuario } from "../../models/Usuario";
 import { IUsuarioDTO } from "../../types/Usuario.types";
 
