@@ -25,5 +25,3 @@ describe("ListarGenerosUseCase", () => {
     expect(GeneroRepositorio.listarGeneros).toHaveBeenCalledTimes(1);
   });
 });
-
-export { ListarGenerosUseCase };
