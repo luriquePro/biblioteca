@@ -22,20 +22,24 @@ describe("BuscarUsuarioPorCPFUseCase Casos de Uso", () => {
       endereco: "endereco_valido"
     };
 
+    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockReturnValue(usuarioDTO);
     (UsuariosRepositorio.buscarUsuario as jest.Mock).mockResolvedValue(usuarioDTO);
 
     const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorio);
     const output = await sut.handle({ cpf: "71079969403" });
 
     expect(output).toEqual(usuarioDTO);
+    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
   });
 
   test("Deve-se retornar null ao não encontrar o usuário", async () => {
+    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockReturnValue(null);
     (UsuariosRepositorio.buscarUsuario as jest.Mock).mockResolvedValue(null);
 
     const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorio);
     const output = await sut.handle({ cpf: "71079969403" });
 
     expect(output).toBeNull();
+    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
   });
 });
