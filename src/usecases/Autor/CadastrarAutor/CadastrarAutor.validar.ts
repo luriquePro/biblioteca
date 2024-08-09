@@ -5,7 +5,7 @@ import { YupValidator } from "../../../common/YupValidator";
 
 const CadastrarAutorValidar = async ({ autor }: ICadastrarAutorDTO) => {
   const cadastrarAutorDTO: ICadastrarAutorDTO = { autor };
-  const setShapeValidation = { autor: yup.string().required("Autor é obrigatorio").min(3, "Autor precisa ter pelo menos 3 caracteres") };
+  const setShapeValidation = { autor: yup.string().required("Autor é obrigatório").min(3, "Autor precisa ter pelo menos 3 caracteres") };
   await YupValidator(setShapeValidation, cadastrarAutorDTO);
 };
 
