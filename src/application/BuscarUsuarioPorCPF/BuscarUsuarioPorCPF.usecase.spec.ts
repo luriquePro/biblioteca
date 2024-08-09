@@ -42,4 +42,11 @@ describe("BuscarUsuarioPorCPFUseCase Casos de Uso", () => {
     expect(output).toBeNull();
     expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
   });
+
+  test("Deve-se retornar um erro, ao não informar o cpf", async () => {
+    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorio);
+
+    await expect(async () => await sut.handle({ cpf: "" })).rejects.toThrow("CPF inválido");
+    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(0);
+  });
 });
