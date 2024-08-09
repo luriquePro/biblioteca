@@ -28,6 +28,10 @@ export interface IBuscarUsuarioFiltroDTO {
   telefone?: string;
 }
 
+export interface IBuscarUsuarioPorCPFDTO {
+  cpf: string
+}
+
 export interface IUsuarioRepositorio {
   listar: () => Promise<IUsuarioDTO[]>;
   cadastrar: (dadosDoUsuario: ICadastrarUsuarioReturnDTO) => Promise<IUsuarioDTO>;
