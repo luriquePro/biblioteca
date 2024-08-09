@@ -1,7 +1,4 @@
-export interface IGeneroDTO {
-  id: string;
-  genero: string;
-}
+import { IGeneroDTO } from "../../../types/Genero.types";
 
 export interface ICadastrarGeneroDTO {
   genero: string;

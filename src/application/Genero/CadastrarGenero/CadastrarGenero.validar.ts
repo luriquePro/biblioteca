@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { YupValidator } from "../../common/YupValidator";
+import { YupValidator } from "../../../common/YupValidator";
 import { ICadastrarGeneroDTO } from "./CadastrarGenero.interface";
 
 const CadastrarGeneroValidar = async ({ genero }: ICadastrarGeneroDTO) => {

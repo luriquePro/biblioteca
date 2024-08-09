@@ -1,4 +1,4 @@
-import { GerarId } from "../../common/GerarId";
+import { GerarId } from "../../../common/GerarId";
 import { IGeneroRepositorio } from "./CadastrarGenero.interface";
 import { CadastrarGeneroUseCase } from "./CadastrarGenero.usecase";
 

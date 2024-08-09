@@ -1,4 +1,4 @@
-import { IUsuarioDTO } from "../../types/Usuario.types";
+import { IUsuarioDTO } from "../../../types/Usuario.types";
 import { IUsuarioRepositorio } from "../CadastrarUsuario/CadastrarUsuario.interfaces";
 import { BuscarUsuarioUseCase } from "./BuscarUsuario.usecase";
 

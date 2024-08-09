@@ -1,8 +1,8 @@
 import * as yup from "yup";
 
-import { YupValidator } from "../../common/YupValidator";
 import { ICadastrarUsuarioDTO } from "./CadastrarUsuario.interfaces";
-import { CpfValidator } from "../../common/CpfValidator";
+import { CpfValidator } from "../../../common/CpfValidator";
+import { YupValidator } from "../../../common/YupValidator";
 
 const CadastrarUsuarioValidar = async ({ nomeCompleto, cpf, telefone, email, dataNascimento, endereco }: ICadastrarUsuarioDTO) => {
   const cadastrarUsuarioDTO: ICadastrarUsuarioDTO = { nomeCompleto, cpf, telefone, email, dataNascimento, endereco };

@@ -1,5 +1,5 @@
-import { GerarId } from "../../common/GerarId";
-import { BadRequestError } from "../../shared/errors/AppError";
+import { GerarId } from "../../../common/GerarId";
+import { BadRequestError } from "../../../shared/errors/AppError";
 import { ICadastrarUsuarioDTO, ICadastrarUsuarioReturnDTO, IUsuarioRepositorio } from "./CadastrarUsuario.interfaces";
 import { CadastrarUsuarioValidar } from "./CadastrarUsuario.validar";
 

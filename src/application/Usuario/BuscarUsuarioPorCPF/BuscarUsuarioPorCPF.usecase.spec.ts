@@ -1,4 +1,4 @@
-import { IUsuarioDTO } from "../../types/Usuario.types";
+import { IUsuarioDTO } from "../../../types/Usuario.types";
 import { IUsuarioRepositorio } from "../CadastrarUsuario/CadastrarUsuario.interfaces";
 import { BuscarUsuarioPorCPFUseCase } from "./BuscarUsuarioPorCPF.usecase";
 
@@ -11,7 +11,7 @@ describe("BuscarUsuarioPorCPFUseCase Casos de Uso", () => {
   };
 
   test("Deve-se buscar um usuário por cpf", async () => {
-    const usuarioDTO: IUsuarioDTO = {
+    const usuarioDTO: IUsuarioDTO= {
       id: "id_valido",
       nome_completo: "nome_valido",
       cpf: "71079969403",
