@@ -89,6 +89,8 @@ export class CadastrarLivroUseCase {
       valor_de_venda
     };
 
+    console.log(cadastrarLivroDTO);
+
     await this.LivroRepositorio.cadastrar(cadastrarLivroDTO);
   }
 }
