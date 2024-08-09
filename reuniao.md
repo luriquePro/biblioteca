@@ -27,6 +27,16 @@
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
+[] - Cadastrar Genero de Livros
+[] - Listar Genero de Livros
+[] - Criar Entidade e repositorio Mongo
+[] - Criar Rota e Controller
+
+[] - Cadastrar Autor de Livros
+[] - Listar Autores de Livros
+[] - Criar Entidade e repositorio Mongo
+[] - Criar Rota e Controller
+
 [] Cadastrar um novo livro
 [] - ISBN deve ser único
 [] - Criar Entidade e repositorio Mongo
