@@ -14,4 +14,5 @@ export interface IGeneroFiltroDTO {
 export interface IGeneroRepositorio {
   cadastrar: (dadosDoGenero: IGeneroDTO) => Promise<void>;
   buscarGenero: (filtro: IGeneroFiltroDTO) => Promise<IGeneroDTO | null>;
+  listarGeneros: () => Promise<IGeneroDTO[]>;
 }
