@@ -1,8 +1,9 @@
 import { ILivroDTO } from "../../types/Livro.types";
 import { ICadastrarLivroDTO } from "./CadastrarLivro/CasdastrarLivro.interfaces";
+import { IListarLivrosComPaginacaoRaw } from "./ListarLivrosComPaginacao/ListarLivrosComPaginacao.interface";
 
 export interface ILivroRepositorio {
-  listarLivrosComPaginacao: () => Promise<ILivroDTO[]>;
+  listarLivrosComPaginacao: () => Promise<IListarLivrosComPaginacaoRaw>;
   buscarLivros: (livro: ILivroFiltroDTO) => Promise<ILivroDTO[]>;
   buscarLivro: (livro: ILivroFiltroDTO) => Promise<ILivroDTO | null>;
   cadastrar: (livro: ICadastrarLivroDTO) => Promise<ILivroDTO>;
