@@ -40,16 +40,16 @@
 [] - Criar Entidade e repositorio de Autor no Mongo
 [] - Criar Rota e Controller de Autor
 
-[] - Cadastrar Edita de Livros
-[] - Edita deve ser um campo Unico
+[X] - Cadastrar Editora de Livros
+[X] - Editora deve ser um campo Unico
 
-[] - Listar Editoras de Livros
+[X] - Listar Editoras de Livros
 
 [] - Criar Entidade e repositorio de Editora no Mongo
 [] - Criar Rota e Controller de Editora
 
-[] Cadastrar um novo livro
-[] - ISBN deve ser único
+[X] Cadastrar um novo livro
+[X] - ISBN deve ser único
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
