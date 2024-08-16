@@ -1,15 +1,8 @@
+import { UsuariosRepositorioJest } from "../../../test/repositorios/UsuarioRepositorioJest";
 import { IUsuarioDTO } from "../../../types/Usuario.types";
-import { IUsuarioRepositorio } from "../Usuario.interfaces";
 import { BuscarUsuarioUseCase } from "./BuscarUsuario.usecase";
 
 describe("BuscarUsuarioUseCase Casos de Uso", () => {
-  const UsuariosRepositorio: IUsuarioRepositorio = {
-    cadastrar: jest.fn(),
-    buscarUsuario: jest.fn(),
-    buscarUsuarios: jest.fn(),
-    listar: jest.fn().mockReturnValue([])
-  };
-
   test("Deve-se buscar um usuário por cpf", async () => {
     const usuarioDTO: IUsuarioDTO = {
       id: "id_valido",
@@ -22,23 +15,23 @@ describe("BuscarUsuarioUseCase Casos de Uso", () => {
       endereco: "endereco_valido"
     };
 
-    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockResolvedValue(usuarioDTO);
+    (UsuariosRepositorioJest.buscarUsuario as jest.Mock).mockResolvedValue(usuarioDTO);
 
-    const sut = new BuscarUsuarioUseCase(UsuariosRepositorio);
+    const sut = new BuscarUsuarioUseCase(UsuariosRepositorioJest);
     const output = await sut.handle({ cpf: "71079969403" });
 
     expect(output).toEqual(usuarioDTO);
-    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(UsuariosRepositorioJest.buscarUsuario).toHaveBeenCalledTimes(1);
   });
 
   test("Deve-se retornar null ao não encontrar o usuário", async () => {
-    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockResolvedValue(null);
+    (UsuariosRepositorioJest.buscarUsuario as jest.Mock).mockResolvedValue(null);
 
-    const sut = new BuscarUsuarioUseCase(UsuariosRepositorio);
+    const sut = new BuscarUsuarioUseCase(UsuariosRepositorioJest);
     const output = await sut.handle({ cpf: "71079969403" });
 
     expect(output).toBeNull();
-    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(UsuariosRepositorioJest.buscarUsuario).toHaveBeenCalledTimes(1);
   });
 });
 

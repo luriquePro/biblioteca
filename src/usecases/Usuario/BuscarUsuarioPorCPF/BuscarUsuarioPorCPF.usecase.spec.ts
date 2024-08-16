@@ -1,17 +1,10 @@
+import { UsuariosRepositorioJest } from "../../../test/repositorios/UsuarioRepositorioJest";
 import { IUsuarioDTO } from "../../../types/Usuario.types";
-import { IUsuarioRepositorio } from "../Usuario.interfaces";
 import { BuscarUsuarioPorCPFUseCase } from "./BuscarUsuarioPorCPF.usecase";
 
 describe("BuscarUsuarioPorCPFUseCase Casos de Uso", () => {
-  const UsuariosRepositorio: IUsuarioRepositorio = {
-    cadastrar: jest.fn(),
-    buscarUsuario: jest.fn(),
-    buscarUsuarios: jest.fn(),
-    listar: jest.fn().mockReturnValue([])
-  };
-
   test("Deve-se buscar um usuário por cpf", async () => {
-    const usuarioDTO: IUsuarioDTO= {
+    const usuarioDTO: IUsuarioDTO = {
       id: "id_valido",
       nome_completo: "nome_valido",
       cpf: "71079969403",
@@ -22,31 +15,31 @@ describe("BuscarUsuarioPorCPFUseCase Casos de Uso", () => {
       endereco: "endereco_valido"
     };
 
-    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockReturnValue(usuarioDTO);
-    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockResolvedValue(usuarioDTO);
+    (UsuariosRepositorioJest.buscarUsuario as jest.Mock).mockReturnValue(usuarioDTO);
+    (UsuariosRepositorioJest.buscarUsuario as jest.Mock).mockResolvedValue(usuarioDTO);
 
-    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorio);
+    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorioJest);
     const output = await sut.handle({ cpf: "71079969403" });
 
     expect(output).toEqual(usuarioDTO);
-    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(UsuariosRepositorioJest.buscarUsuario).toHaveBeenCalledTimes(1);
   });
 
   test("Deve-se retornar null ao não encontrar o usuário", async () => {
-    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockReturnValue(null);
-    (UsuariosRepositorio.buscarUsuario as jest.Mock).mockResolvedValue(null);
+    (UsuariosRepositorioJest.buscarUsuario as jest.Mock).mockReturnValue(null);
+    (UsuariosRepositorioJest.buscarUsuario as jest.Mock).mockResolvedValue(null);
 
-    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorio);
+    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorioJest);
     const output = await sut.handle({ cpf: "71079969403" });
 
     expect(output).toBeNull();
-    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(UsuariosRepositorioJest.buscarUsuario).toHaveBeenCalledTimes(1);
   });
 
   test("Deve-se retornar um erro, ao não informar o cpf", async () => {
-    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorio);
+    const sut = new BuscarUsuarioPorCPFUseCase(UsuariosRepositorioJest);
 
     await expect(async () => await sut.handle({ cpf: "" })).rejects.toThrow("CPF inválido");
-    expect(UsuariosRepositorio.buscarUsuario).toHaveBeenCalledTimes(0);
+    expect(UsuariosRepositorioJest.buscarUsuario).toHaveBeenCalledTimes(0);
   });
 });

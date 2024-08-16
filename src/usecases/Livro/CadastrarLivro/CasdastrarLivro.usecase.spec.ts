@@ -1,38 +1,11 @@
-import { IAutorRepositorio } from "../../Autor/Autor.interfaces";
-import { IEditoraRepositorio } from "../../Editora/Editora.interfaces";
-import { IGeneroRepositorio } from "../../Genero/Genero.interfaces";
-import { ILivroRepositorio } from "../Livro.interfaces";
+import { AutorRepositorioJest } from "../../../test/repositorios/AutorRepositorioJest";
+import { EditoraRepositorioJest } from "../../../test/repositorios/EditoraRepositorioJest";
+import { GeneroRepositorioJest } from "../../../test/repositorios/GeneroRepositorioJest";
+import { LivroRepositorioJest } from "../../../test/repositorios/LivroRepositorioJest";
 import { ICadastrarLivroRawDTO } from "./CasdastrarLivro.interfaces";
 import { CadastrarLivroUseCase } from "./CasdastrarLivro.usecase";
 
 describe("CadastrarLivroUseCase", () => {
-  const LivroRepositorio: ILivroRepositorio = {
-    cadastrar: jest.fn(),
-    buscarLivro: jest.fn().mockResolvedValue(null),
-    buscarLivros: jest.fn().mockReturnValue([]),
-    listarLivrosComPaginacao: jest.fn().mockReturnValue([])
-  };
-
-  const AutorRepositorio: IAutorRepositorio = {
-    cadastrar: jest.fn(),
-    buscarAutor: jest.fn().mockResolvedValue(null),
-    listarAutores: jest.fn().mockReturnValue([]),
-    buscarAutores: jest.fn().mockReturnValue([])
-  };
-
-  const EditoraRepositorio: IEditoraRepositorio = {
-    cadastrar: jest.fn(),
-    buscarEditora: jest.fn().mockResolvedValue(null),
-    listarEditoras: jest.fn().mockReturnValue([])
-  };
-
-  const GeneroRepositorio: IGeneroRepositorio = {
-    cadastrar: jest.fn(),
-    buscarGenero: jest.fn().mockResolvedValue(null),
-    listarGeneros: jest.fn().mockReturnValue([]),
-    buscarGeneros: jest.fn().mockReturnValue([])
-  };
-
   let validDTO: ICadastrarLivroRawDTO;
 
   beforeEach(() => {
@@ -52,10 +25,10 @@ describe("CadastrarLivroUseCase", () => {
   });
 
   test("Deve-se dar um erro ao não informar autores corretos", async () => {
-    (AutorRepositorio.listarAutores as jest.Mock).mockResolvedValue([]);
+    (AutorRepositorioJest.listarAutores as jest.Mock).mockResolvedValue([]);
 
-    const sut = new CadastrarLivroUseCase(LivroRepositorio, AutorRepositorio, GeneroRepositorio, EditoraRepositorio);
+    const sut = new CadastrarLivroUseCase(LivroRepositorioJest, AutorRepositorioJest, GeneroRepositorioJest, EditoraRepositorioJest);
     await expect(async () => await sut.handle({ ...validDTO })).rejects.toThrow("Autores Invalidos");
-    expect(LivroRepositorio.cadastrar).toHaveBeenCalledTimes(0);
+    expect(LivroRepositorioJest.cadastrar).toHaveBeenCalledTimes(0);
   });
 });
