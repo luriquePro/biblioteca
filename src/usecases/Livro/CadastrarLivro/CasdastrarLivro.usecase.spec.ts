@@ -24,11 +24,73 @@ describe("CadastrarLivroUseCase", () => {
     };
   });
 
-  test("Deve-se dar um erro ao não informar autores corretos", async () => {
-    (AutorRepositorioJest.listarAutores as jest.Mock).mockResolvedValue([]);
+  test("Deve-se dar um erro ao informar autores incorretos", async () => {
+    (AutorRepositorioJest.buscarAutores as jest.Mock).mockResolvedValue([]);
 
     const sut = new CadastrarLivroUseCase(LivroRepositorioJest, AutorRepositorioJest, GeneroRepositorioJest, EditoraRepositorioJest);
     await expect(async () => await sut.handle({ ...validDTO })).rejects.toThrow("Autores Invalidos");
+    expect(AutorRepositorioJest.buscarAutores).toHaveBeenCalledTimes(1);
+    expect(GeneroRepositorioJest.buscarGeneros).toHaveBeenCalledTimes(0);
+    expect(EditoraRepositorioJest.buscarEditora).toHaveBeenCalledTimes(0);
+    expect(LivroRepositorioJest.buscarLivro).toHaveBeenCalledTimes(0);
     expect(LivroRepositorioJest.cadastrar).toHaveBeenCalledTimes(0);
+  });
+
+  test("Deve-se dar um erro ao informar generos incorretos", async () => {
+    (AutorRepositorioJest.buscarAutores as jest.Mock).mockResolvedValue([{ id: "1", nome: "Autor 1" }]);
+    (GeneroRepositorioJest.buscarGeneros as jest.Mock).mockResolvedValue([]);
+
+    const sut = new CadastrarLivroUseCase(LivroRepositorioJest, AutorRepositorioJest, GeneroRepositorioJest, EditoraRepositorioJest);
+    await expect(async () => await sut.handle({ ...validDTO })).rejects.toThrow("Gêneros Invalidos");
+    expect(AutorRepositorioJest.buscarAutores).toHaveBeenCalledTimes(1);
+    expect(GeneroRepositorioJest.buscarGeneros).toHaveBeenCalledTimes(1);
+    expect(EditoraRepositorioJest.buscarEditora).toHaveBeenCalledTimes(0);
+    expect(LivroRepositorioJest.buscarLivro).toHaveBeenCalledTimes(0);
+    expect(LivroRepositorioJest.cadastrar).toHaveBeenCalledTimes(0);
+  });
+
+  test("Deve-se dar um erro ao informar editora incorreta", async () => {
+    (AutorRepositorioJest.buscarAutores as jest.Mock).mockResolvedValue([{ id: "1", nome: "Autor 1" }]);
+    (GeneroRepositorioJest.buscarGeneros as jest.Mock).mockResolvedValue([{ id: "1", nome: "Gênero 1" }]);
+    (EditoraRepositorioJest.buscarEditora as jest.Mock).mockResolvedValue(null);
+
+    const sut = new CadastrarLivroUseCase(LivroRepositorioJest, AutorRepositorioJest, GeneroRepositorioJest, EditoraRepositorioJest);
+    await expect(async () => await sut.handle({ ...validDTO })).rejects.toThrow("Editora Invalida");
+    expect(AutorRepositorioJest.buscarAutores).toHaveBeenCalledTimes(1);
+    expect(GeneroRepositorioJest.buscarGeneros).toHaveBeenCalledTimes(1);
+    expect(EditoraRepositorioJest.buscarEditora).toHaveBeenCalledTimes(1);
+    expect(LivroRepositorioJest.buscarLivro).toHaveBeenCalledTimes(0);
+    expect(LivroRepositorioJest.cadastrar).toHaveBeenCalledTimes(0);
+  });
+
+  test("Deve-se dar um erro ao informar um ISBN já cadastrado", async () => {
+    (AutorRepositorioJest.buscarAutores as jest.Mock).mockResolvedValue([{ id: "1", nome: "Autor 1" }]);
+    (GeneroRepositorioJest.buscarGeneros as jest.Mock).mockResolvedValue([{ id: "1", nome: "Gênero 1" }]);
+    (EditoraRepositorioJest.buscarEditora as jest.Mock).mockResolvedValue({ id: "1", editora: "Editora 1" });
+    (LivroRepositorioJest.buscarLivro as jest.Mock).mockResolvedValue({ ISBN: "9783161484100" });
+
+    const sut = new CadastrarLivroUseCase(LivroRepositorioJest, AutorRepositorioJest, GeneroRepositorioJest, EditoraRepositorioJest);
+    await expect(async () => await sut.handle({ ...validDTO })).rejects.toThrow("ISBN Já cadastrado");
+    expect(AutorRepositorioJest.buscarAutores).toHaveBeenCalledTimes(1);
+    expect(GeneroRepositorioJest.buscarGeneros).toHaveBeenCalledTimes(1);
+    expect(EditoraRepositorioJest.buscarEditora).toHaveBeenCalledTimes(1);
+    expect(LivroRepositorioJest.buscarLivro).toHaveBeenCalledTimes(1);
+    expect(LivroRepositorioJest.cadastrar).toHaveBeenCalledTimes(0);
+  });
+
+  test("Deve-se cadastrar um novo Livro", async () => {
+    (AutorRepositorioJest.buscarAutores as jest.Mock).mockResolvedValue([{ id: "1", nome: "Autor 1" }]);
+    (GeneroRepositorioJest.buscarGeneros as jest.Mock).mockResolvedValue([{ id: "1", nome: "Gênero 1" }]);
+    (EditoraRepositorioJest.buscarEditora as jest.Mock).mockResolvedValue({ id: "1", editora: "Editora 1" });
+    (LivroRepositorioJest.buscarLivro as jest.Mock).mockResolvedValue(null);
+    (LivroRepositorioJest.cadastrar as jest.Mock).mockResolvedValue(null);
+
+    const sut = new CadastrarLivroUseCase(LivroRepositorioJest, AutorRepositorioJest, GeneroRepositorioJest, EditoraRepositorioJest);
+    await sut.handle({ ...validDTO });
+    expect(AutorRepositorioJest.buscarAutores).toHaveBeenCalledTimes(1);
+    expect(GeneroRepositorioJest.buscarGeneros).toHaveBeenCalledTimes(1);
+    expect(EditoraRepositorioJest.buscarEditora).toHaveBeenCalledTimes(1);
+    expect(LivroRepositorioJest.buscarLivro).toHaveBeenCalledTimes(1);
+    expect(LivroRepositorioJest.cadastrar).toHaveBeenCalledTimes(1);
   });
 });
