@@ -5,6 +5,9 @@ const validDTO = {
   // cpf: "71079969403",
   // order: 5,
   // classificacao: "asc",
+  ativo: true,
+  teste: false,
+  teste2: JSON.stringify({ typeValue: "boolean", value: "true" }),
   valor_teste: 1,
   data_teste: JSON.stringify({ typeValue: "date", value: "2024-01-01" }),
   data_criacao: JSON.stringify({ typeValue: "date", value: { $gte: "2024-01-01", $lte: "2024-12-31" } }),
@@ -14,5 +17,15 @@ const validDTO = {
 };
 
 const result01 = formatarBuscaParaMongo(validDTO);
+const result02 = formatarBuscaParaMongo({});
+const result03 = formatarBuscaParaMongo();
+const result04 = formatarBuscaParaMongo({
+  nome: null,
+  cpf: undefined,
+  data: null
+});
 
 console.log(result01);
+console.log(result02);
+console.log(result03);
+console.log(result04);
