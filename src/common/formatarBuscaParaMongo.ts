@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Query } from "../types/Paginacao";
 
 export const formatarBuscaParaMongo = (searchQuery?: Query): Record<string, any> | undefined => {
@@ -7,17 +8,22 @@ export const formatarBuscaParaMongo = (searchQuery?: Query): Record<string, any>
 
   for (const [column, value] of Object.entries(searchQuery)) {
     try {
-      const { typeValue, value: searchValue } = JSON.parse(value);
+      const queryObject = JSON.parse(value);
+      const { typeValue, value: queryValue } = queryObject;
 
       switch (typeValue) {
         case "date":
-          resultQuery[column] = Object.fromEntries(Object.entries(searchValue).map(([key, dateValue]) => [key, new Date(dateValue)]));
+          resultQuery[column] = formatarBuscaComData(queryValue);
           break;
-        case "cpf":
-          resultQuery[column] = new RegExp(searchValue as string, "i");
+        case "number":
+          resultQuery[column] = formatarBuscaComNumero(queryValue);
+          break;
+        case "exists":
+          resultQuery[column] = { $exists: queryValue === "true" };
           break;
         default:
-          resultQuery[column] = isNaN(searchValue) ? searchValue : parseInt(searchValue, 10);
+          resultQuery[column] = formatDefaultQuery(column, queryValue, value);
+          break;
       }
     } catch {
       resultQuery[column] = new RegExp(value, "i");
@@ -25,4 +31,28 @@ export const formatarBuscaParaMongo = (searchQuery?: Query): Record<string, any>
   }
 
   return resultQuery;
+};
+
+const formatarBuscaComData = (queryValue: any): Record<string, any> => {
+  if (typeof queryValue === "object") {
+    const dateObject: Record<string, Date> = {};
+    if (queryValue.$gte) dateObject["$gte"] = moment(queryValue.$gte).toDate();
+    if (queryValue.$lte) dateObject["$lte"] = moment(queryValue.$lte).toDate();
+    return dateObject;
+  }
+  return moment(queryValue).toDate();
+};
+
+const formatarBuscaComNumero = (queryValue: any): Record<string, number> => {
+  const numberObject: Record<string, number> = {};
+  if (queryValue.$gte !== undefined) numberObject["$gte"] = Number(queryValue.$gte);
+  if (queryValue.$lte !== undefined) numberObject["$lte"] = Number(queryValue.$lte);
+  return numberObject;
+};
+
+const formatDefaultQuery = (column: string, queryValue: any, rawValue: any) => {
+  if (column === "cpf" || column === "cep") {
+    return new RegExp(rawValue, "i");
+  }
+  return isNaN(rawValue) ? queryValue : parseInt(rawValue, 10);
 };

@@ -1,6 +1,6 @@
 import { FilterQuery } from "mongoose";
 
-export type Query = string | string[] | object | object[];
+export type Query = string | string[] | object | object[] | { [column: string]: string };
 export type Sort = Record<string, 1 | -1>;
 
 export interface IOpcoesDaBusca {
