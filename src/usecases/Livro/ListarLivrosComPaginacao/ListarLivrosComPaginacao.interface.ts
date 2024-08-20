@@ -8,16 +8,25 @@ export interface IListarLivrosComPaginacaoRaw {
   quantidade_total: number;
   quantidade_emprestada: number;
   quantidade_disponivel: number;
-  data_lancamento: string;
+  data_lancamento: Date;
   descricao: string;
-  valor_de_compra: number;
-  valor_de_venda: number;
-  quantidade_vezes_emprestadas: number;
-  quantidade_vezes_devolvidas: number;
   generos: string[];
   autores: string[];
   editora: string;
   edicao: number;
+  valor_de_compra: number;
+  valor_de_venda: number;
+  valor_de_emprestimo: number;
+  quantidade_vezes_emprestadas: number;
+  quantidade_vezes_vendidas: number;
+  quantidade_vezes_devolvidas: number;
+  taxa_multa: number;
+  total_arrecadado_venda: number;
+  total_arrecadado_emprestimo: number;
+  total_arrecadado_emprestimo_sem_multa: number;
+  total_arrecadado_emprestimo_com_multa: number;
+  total_valor_arrecadado: number;
+
   usuarios_que_pegaram_emprestado: {
     nome: string;
     id: string;
@@ -36,7 +45,20 @@ export interface IListarLivrosComPaginacaoRaw {
     multa_atual?: number;
     multa_total?: number;
   };
-  total_valor_arrecadado: number;
+
+  usuarios_compradores: {
+    nome: string;
+    id: string;
+    data_compra: Date;
+    valor_pago: number;
+  }[];
+  ultimo_usuario_comprador: {
+    nome: string;
+    id: string;
+    data_compra: Date;
+    valor_pago: number;
+  };
+
   data_cadastro: Date;
   ultima_atualizacao: Date;
 }
