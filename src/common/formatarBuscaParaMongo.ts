@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Query } from "../types/Paginacao";
+import { IObjetoBusca, Query } from "../types/Paginacao";
 
 export const formatarBuscaParaMongo = (searchQuery?: Query): Record<string, any> | undefined => {
   if (!searchQuery) return {};
@@ -8,7 +8,7 @@ export const formatarBuscaParaMongo = (searchQuery?: Query): Record<string, any>
 
   for (const [column, value] of Object.entries(searchQuery)) {
     try {
-      const queryObject = JSON.parse(value);
+      const queryObject = JSON.parse(value) as IObjetoBusca;
       const { typeValue, value: queryValue } = queryObject;
 
       switch (typeValue) {

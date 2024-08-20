@@ -6,7 +6,8 @@ const validDTO = {
   // order: 5,
   // classificacao: "asc",
   // ativo: "true",
-  ativo: { typeValue: "boolean", value: "true" }
+  ativo: { typeValue: "boolean", value: "true" },
+  "teste.calipso": JSON.stringify({ typeValue: "not-equals", value: "true" })
   // teste: false,
   // teste2: JSON.stringify({ typeValue: "boolean", value: "true" }),
   // valor_teste: 1,

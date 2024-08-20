@@ -86,4 +86,10 @@
 
 [] - Adicionar DOTENV
 
+[] - Adicionar Status em todos os livros
+[] - Status vai ser uma string. ("ATIVO", "DELETADO")
+[] - Criar padrão de deletar dados (DeletedAt + status "DELETADO")
+[] - Criar Update de todas as entidades
+[] - Criar Delete de todas as entidades
+
 ## Estruturas
