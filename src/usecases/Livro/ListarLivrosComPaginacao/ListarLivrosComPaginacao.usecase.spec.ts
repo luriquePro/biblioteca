@@ -21,7 +21,7 @@ describe("ListarLivrosComPaginacao", () => {
     usecase = new ListarLivrosComPaginacao(mockLivroRepositorio);
   });
 
-  it("should return a list of books with pagination data", async () => {
+  it("Deve-se retornar uma lista de livros", async () => {
     const dadosDaQuery: IBuscaFiltros = {
       paginaAtual: 1,
       quantidadesItemsPorPagina: 10,
