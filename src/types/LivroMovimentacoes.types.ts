@@ -10,7 +10,7 @@ export interface ILivroMovimentacoesDTO {
     valor_emprestimo: number;
     taxa_multa_diaria: number;
   };
-  periodo_dias: string;
+  periodo_dias: number;
   data_emprestimo: Date;
   data_previsao_devolucao: Date;
 

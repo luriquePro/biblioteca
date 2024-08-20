@@ -39,8 +39,8 @@ export class EmprestarLivroUseCase {
       livro: {
         id: livroCadastrado.id,
         titulo: livroCadastrado.titulo,
-        valor_emprestimo: livroCadastrado.valor_emprestimo * periodo_dias,
-        taxa_multa_diaria: livroCadastrado.taxa_multa
+        valor_emprestimo: livroCadastrado.valor_emprestimo_diario * periodo_dias,
+        taxa_multa_diaria: livroCadastrado.taxa_multa_diaria
       },
       periodo_dias: periodo_dias,
       data_emprestimo: moment().utc().toDate(),
