@@ -1,6 +1,6 @@
 import moment from "moment";
 import { GerarId } from "../../../common/GerarId";
-import { NotFoundError } from "../../../shared/errors/AppError";
+import { BadRequestError, NotFoundError } from "../../../shared/errors/AppError";
 import { ILivroRepositorio } from "../../Livro/Livro.interfaces";
 import { IUsuarioRepositorio } from "../../Usuario/Usuario.interfaces";
 import { ILivroMovimentacoesRepositorio } from "../livroMovimentacoes.interface";
@@ -29,7 +29,7 @@ export class EmprestarLivroUseCase {
     // Checar se o livro tem unidades disponiveis
     const unidadesDisponiveis = await this.LivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis({ id_livro });
     if (unidadesDisponiveis < 1) {
-      throw new Error("O Livro selecionado não possui unidades disponiveis.");
+      throw new BadRequestError("O Livro selecionado não possui unidades disponiveis.");
     }
 
     // Adicionar o emprestimo
