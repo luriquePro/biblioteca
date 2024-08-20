@@ -3,7 +3,7 @@ import { IBuscaFiltros, IOpcoesDaBusca } from "../../../types/Paginacao";
 import { ILivroRepositorio } from "../Livro.interfaces";
 import { IListarLivrosComPaginacao } from "./ListarLivrosComPaginacao.interface";
 
-export class ListarLivrosComPaginacao {
+export class ListarLivrosComPaginacaoUseCase {
   constructor(private readonly LivroRepositorio: ILivroRepositorio) {}
 
   public async handle(dadosDaQuery: IBuscaFiltros): Promise<IListarLivrosComPaginacao> {

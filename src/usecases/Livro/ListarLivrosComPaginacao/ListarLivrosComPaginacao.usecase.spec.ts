@@ -2,13 +2,13 @@ import moment from "moment";
 import { IBuscaFiltros } from "../../../types/Paginacao";
 import { ILivroRepositorio } from "../Livro.interfaces";
 import { IListarLivrosComPaginacao } from "./ListarLivrosComPaginacao.interface";
-import { ListarLivrosComPaginacao } from "./ListarLivrosComPaginacao.usecase";
+import { ListarLivrosComPaginacaoUseCase } from "./ListarLivrosComPaginacao.usecase";
 
 jest.mock("../../../types/Paginacao");
 jest.mock("../Livro.interfaces");
 
 describe("ListarLivrosComPaginacao", () => {
-  let usecase: ListarLivrosComPaginacao;
+  let usecase: ListarLivrosComPaginacaoUseCase;
   let mockLivroRepositorio: jest.Mocked<ILivroRepositorio>;
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe("ListarLivrosComPaginacao", () => {
       sumarioGeralDeListarLivros: jest.fn()
     } as unknown as jest.Mocked<ILivroRepositorio>;
 
-    usecase = new ListarLivrosComPaginacao(mockLivroRepositorio);
+    usecase = new ListarLivrosComPaginacaoUseCase(mockLivroRepositorio);
   });
 
   it("Deve-se retornar uma lista de livros", async () => {
