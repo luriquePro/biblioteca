@@ -5,9 +5,6 @@ export interface IListarLivrosComPaginacaoRaw {
   id: string;
   titulo: string;
   ISBN: string;
-  quantidade_total: number;
-  quantidade_emprestada: number;
-  quantidade_disponivel: number;
   data_lancamento: Date;
   descricao: string;
   generos: string[];
@@ -16,11 +13,17 @@ export interface IListarLivrosComPaginacaoRaw {
   edicao: number;
   valor_de_compra: number;
   valor_de_venda: number;
-  valor_de_emprestimo: number;
+  taxa_multa_diaria: number;
+  valor_de_emprestimo_diario: number;
+
+  quantidade_total: number;
+  quantidade_emprestada: number;
+  quantidade_disponivel: number;
+
   quantidade_vezes_emprestadas: number;
   quantidade_vezes_vendidas: number;
   quantidade_vezes_devolvidas: number;
-  taxa_multa: number;
+  
   total_arrecadado_venda: number;
   total_arrecadado_emprestimo: number;
   total_arrecadado_emprestimo_sem_multa: number;

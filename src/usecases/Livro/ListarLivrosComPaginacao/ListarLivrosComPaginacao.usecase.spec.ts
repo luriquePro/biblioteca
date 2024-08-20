@@ -72,8 +72,8 @@ describe("ListarLivrosComPaginacao", () => {
 
         valor_de_compra: 10,
         valor_de_venda: 25,
-        valor_de_emprestimo: 5,
-        taxa_multa: 0.05,
+        valor_de_emprestimo_diario: 5,
+        taxa_multa_diaria: 0.05,
 
         quantidade_vezes_emprestadas: 10,
         quantidade_vezes_devolvidas: 9,
