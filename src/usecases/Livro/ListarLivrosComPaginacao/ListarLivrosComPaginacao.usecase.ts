@@ -21,7 +21,7 @@ export class ListarLivrosComPaginacao {
     const listarLivrosComPaginacao: IListarLivrosComPaginacao = {
       paginacao: {
         pagina_atual: opcoesDeBusca.paginacao.paginaAtual,
-        quantidades_total_de_paginas: Math.ceil(quantidadeDeLivros / opcoesDeBusca.paginacao.quantidadesItemsPorPagina)
+        quantidades_total_de_paginas: Math.ceil((quantidadeDeLivros || 1) / opcoesDeBusca.paginacao.quantidadesItemsPorPagina)
       },
       sumario: {
         sumario_geral: sumarioGeral,

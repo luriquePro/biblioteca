@@ -138,4 +138,52 @@ describe("ListarLivrosComPaginacao", () => {
       listagem: expectedListagem
     });
   });
+
+  it("Deve-se retornar uma listagem vazia quando não há livros", async () => {
+    const dadosDaQuery: IBuscaFiltros = {
+      paginaAtual: 1,
+      quantidadesItemsPorPagina: 10,
+      classificacao: { campo: 1 },
+      filtrosBusca: { campo: "valor" }
+    };
+
+    const expectedPagination: IListarLivrosComPaginacao["paginacao"] = {
+      pagina_atual: dadosDaQuery.paginaAtual,
+      quantidades_total_de_paginas: 1
+    };
+
+    const expectedSumario: IListarLivrosComPaginacao["sumario"] = {
+      sumario_geral: {
+        quantidade_livros_aguardando_lancamento: 0,
+        quantidade_livros_atrasados: 0,
+        quantidade_livros_disponiveis: 0,
+        quantidade_livros_emprestados: 0,
+        quantidade_livros_indisponiveis: 0,
+        quantidade_livros_total: 0
+      },
+      sumario_dinamico: {
+        quantidade_livros_aguardando_lancamento: 0,
+        quantidade_livros_atrasados: 0,
+        quantidade_livros_disponiveis: 0,
+        quantidade_livros_emprestados: 0,
+        quantidade_livros_indisponiveis: 0,
+        quantidade_livros_total: 0
+      }
+    };
+
+    const expectedListagem: IListarLivrosComPaginacao["listagem"] = [];
+
+    mockLivroRepositorio.quantidadeLivros.mockResolvedValue(0);
+    mockLivroRepositorio.listarLivrosComPaginacao.mockResolvedValue(expectedListagem);
+    mockLivroRepositorio.sumarioGeralDeListarLivros.mockResolvedValue(expectedSumario.sumario_geral);
+    mockLivroRepositorio.sumarioGeralDeListarLivros.mockResolvedValue(expectedSumario.sumario_dinamico);
+
+    const result = await usecase.handle(dadosDaQuery);
+
+    expect(result).toEqual({
+      paginacao: expectedPagination,
+      sumario: expectedSumario,
+      listagem: expectedListagem
+    });
+  });
 });
