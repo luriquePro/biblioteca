@@ -25,7 +25,9 @@ export class CadastrarLivroUseCase {
     data_lancamento,
     descricao,
     valor_de_compra,
-    valor_de_venda
+    valor_de_venda,
+    taxa_multa_diaria,
+    valor_emprestimo_diario
   }: ICadastrarLivroRawDTO): Promise<void> {
     const cadastrarLivroRawDTO: ICadastrarLivroRawDTO = {
       titulo,
@@ -38,7 +40,9 @@ export class CadastrarLivroUseCase {
       data_lancamento,
       descricao,
       valor_de_compra,
-      valor_de_venda
+      valor_de_venda,
+      taxa_multa_diaria,
+      valor_emprestimo_diario
     };
 
     CadastrarLivroValidar(cadastrarLivroRawDTO);
@@ -86,7 +90,9 @@ export class CadastrarLivroUseCase {
       },
       descricao,
       valor_de_compra,
-      valor_de_venda
+      valor_de_venda,
+      taxa_multa_diaria,
+      valor_emprestimo_diario
     };
 
     await this.LivroRepositorio.cadastrar(cadastrarLivroDTO);

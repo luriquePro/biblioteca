@@ -20,7 +20,9 @@ describe("CadastrarLivroUseCase", () => {
       data_lancamento: new Date("2025-01-01"),
       descricao: "Um livro interessante",
       valor_de_compra: 10.0,
-      valor_de_venda: 20.0
+      valor_de_venda: 20.0,
+      valor_emprestimo_diario: 5.0,
+      taxa_multa_diaria: 0.02
     };
   });
 
