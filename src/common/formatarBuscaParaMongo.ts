@@ -19,10 +19,13 @@ export const formatarBuscaParaMongo = (searchQuery?: Query): Record<string, any>
           resultQuery[column] = formatarBuscaComNumero(queryValue);
           break;
         case "boolean":
-          resultQuery[column] = formatarBuscaComBooleano(queryValue);
+          resultQuery[column] = queryValue === "true" || queryValue === true;
           break;
         case "exists":
-          resultQuery[column] = { $exists: queryValue === "true" };
+          resultQuery[column] = { $exists: queryValue === "true" || queryValue === true };
+          break;
+        case "not-equals":
+          resultQuery[column] = formatarBuscaComNotEquals(queryValue);
           break;
         default:
           resultQuery[column] = formatDefaultQuery(column, queryValue, value);
@@ -66,16 +69,22 @@ const formatarBuscaComNumero = (queryValue: any): Record<string, number> => {
   return numberObject;
 };
 
-const formatarBuscaComBooleano = (queryValue: any) => {
-  return queryValue === "true";
+const formatarBuscaComNotEquals = (queryValue: any) => {
+  if (queryValue === "true" || queryValue === "false" || queryValue === true || queryValue === false) {
+    return { $ne: queryValue === "true" || queryValue === true };
+  }
+
+  return { $ne: queryValue };
 };
 
 const formatDefaultQuery = (column: string, queryValue: any, rawValue: any) => {
   if (column === "cpf" || column === "cep") {
     return new RegExp(rawValue, "i");
+  } else if (rawValue == "true" || rawValue == "false") {
+    return rawValue === "true" || rawValue === true;
   }
 
-  if (typeof rawValue) {
+  if (typeof rawValue === "boolean") {
     return rawValue;
   }
 
