@@ -6,9 +6,9 @@ const EmprestarLivroValidar = async ({ id_livro, id_usuario, periodo_dias }: IEm
   const EmprestarLivroDTO: IEmprestarLivroRawDTO = { id_livro, id_usuario, periodo_dias };
 
   const setShapeValidation = {
-    id_livro: yup.string().uuid().required("Livro é um campo obrigatorio"),
-    id_usuario: yup.string().uuid().required("Usuario é um campo obrigatorio"),
-    periodo_dias: yup.number().required("Periodo de dias é um campo obrigatorio")
+    id_livro: yup.string().required("Livro é um campo obrigatorio").uuid("Livro deve ser um UUID valido"),
+    id_usuario: yup.string().required("Usuario é um campo obrigatorio").uuid("Usuario deve ser um UUID valido"),
+    periodo_dias: yup.number().required("Periodo de dias é um campo obrigatorio").min(1, "Periodo de dias deve ser maior que 0")
   };
   await YupValidator(setShapeValidation, EmprestarLivroDTO);
 };
