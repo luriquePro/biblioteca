@@ -12,6 +12,8 @@ export interface ICadastrarLivroRawDTO {
   descricao?: string;
   valor_de_compra?: number;
   valor_de_venda?: number;
+  valor_emprestimo_diario: number;
+  taxa_multa_diaria: number;
 }
 
 export interface ICadastrarLivroDTO extends ILivroDTO {}

@@ -1,4 +1,3 @@
-import moment from "moment";
 import * as yup from "yup";
 
 import { YupValidator } from "../../../common/YupValidator";
@@ -16,7 +15,9 @@ const CadastrarLivroValidar = async ({
   data_lancamento,
   descricao,
   valor_de_compra,
-  valor_de_venda
+  valor_de_venda,
+  taxa_multa_diaria,
+  valor_emprestimo_diario
 }: ICadastrarLivroRawDTO) => {
   const cadastrarLivroDTO: ICadastrarLivroRawDTO = {
     titulo,
@@ -29,7 +30,9 @@ const CadastrarLivroValidar = async ({
     data_lancamento,
     descricao,
     valor_de_compra,
-    valor_de_venda
+    valor_de_venda,
+    taxa_multa_diaria,
+    valor_emprestimo_diario
   };
 
   const setShapeValidation = {
@@ -59,8 +62,17 @@ const CadastrarLivroValidar = async ({
     quantidade: yup.number().required("Quantidade deve ser informada").min(1, "Quantidade deve ser maior que 0"),
     data_lancamento: yup.date().required("Data de Lancamento deve ser informada"),
     descricao: yup.string().min(3, "Descricão deve ter pelo menos 3 caracteres"),
-    valor_de_compra: yup.number(),
-    valor_de_venda: yup.number()
+    valor_de_compra: yup.number().min(1, "Valor de Compra deve ser maior ou igual a zero"),
+    valor_de_venda: yup.number().min(1, "Valor de Venda deve ser maior ou igual a zero"),
+    taxa_multa_diaria: yup
+      .number()
+      .min(0.01, "Taxa multa deve ser maior ou igual a zero")
+      .max(0.99, "Taxa multa deve ser menor que 1")
+      .required("Taxa multa deve ser informada"),
+    valor_emprestimo_diario: yup
+      .number()
+      .min(1, "Valor emprestimo deve ser maior ou igual a zero")
+      .required("Valor emprestimo deve ser informado")
   };
   await YupValidator(setShapeValidation, cadastrarLivroDTO);
 };

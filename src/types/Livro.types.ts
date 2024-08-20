@@ -22,4 +22,6 @@ export interface ILivroDTO {
   descricao?: string;
   valor_de_compra?: number;
   valor_de_venda?: number;
+  valor_emprestimo_diario: number;
+  taxa_multa_diaria: number;
 }
