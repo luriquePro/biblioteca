@@ -27,19 +27,19 @@ export class EmprestarLivroUseCase {
     }
 
     // Checar se o usuario já está com esse livro emprestado
-    const usuarioComLivro = await this.LivroMovimentacoesRepositorio.checarEmprestimo({ id_livro, id_usuario });
-    if (usuarioComLivro) {
+    const existeEsteUsuarioComEsteLivroPendente = await this.LivroMovimentacoesRepositorio.checarEmprestimo({ id_livro, id_usuario });
+    if (existeEsteUsuarioComEsteLivroPendente) {
       throw new BadRequestError("Esse usuario ja possui o livro emprestado");
     }
 
     // Checar se o livro tem unidades disponiveis
-    const unidadesDisponiveis = await this.LivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis({ id_livro });
-    if (unidadesDisponiveis < 1) {
+    const unidadesDisponiveisDoLivro = await this.LivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis({ id_livro });
+    if (unidadesDisponiveisDoLivro < 1) {
       throw new BadRequestError("O Livro selecionado não possui unidades disponiveis.");
     }
 
     // Adicionar o emprestimo
-    const dadosEmprestimo: IEmprestarLivroDTO = {
+    const dadosEmprestimoDoLivro: IEmprestarLivroDTO = {
       id: GerarId(),
       usuario: { id: usuarioCadastrado.id, nome_completo: usuarioCadastrado.nome_completo },
       livro: {
@@ -53,6 +53,6 @@ export class EmprestarLivroUseCase {
       data_previsao_devolucao: moment().add(periodo_dias, "days").utc().toDate()
     };
 
-    await this.LivroMovimentacoesRepositorio.emprestarLivro(dadosEmprestimo);
+    await this.LivroMovimentacoesRepositorio.emprestarLivro(dadosEmprestimoDoLivro);
   }
 }
