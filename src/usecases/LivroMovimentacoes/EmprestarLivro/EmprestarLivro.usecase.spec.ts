@@ -27,6 +27,7 @@ describe("EmprestarLivroUseCase", () => {
 
     mockLivroMovimentacoesRepositorio = {
       emprestarLivro: jest.fn(),
+      checarEmprestimo: jest.fn(),
       quantidadeLivrosDisponiveis: jest.fn()
     } as unknown as jest.Mocked<ILivroMovimentacoesRepositorio>;
 
@@ -82,6 +83,7 @@ describe("EmprestarLivroUseCase", () => {
 
     mockLivroRepositorio.buscarLivro.mockResolvedValue(livroDTO);
     mockUsuarioRepositorio.buscarUsuario.mockResolvedValue(usuarioDTO);
+    mockLivroMovimentacoesRepositorio.checarEmprestimo.mockResolvedValue(false);
     mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis.mockResolvedValue(5);
 
     await emprestarLivroUseCase.handle({ id_livro, id_usuario, periodo_dias });
@@ -92,6 +94,7 @@ describe("EmprestarLivroUseCase", () => {
 
     expect(mockLivroRepositorio.buscarLivro).toHaveBeenCalledTimes(1);
     expect(mockUsuarioRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(mockLivroMovimentacoesRepositorio.checarEmprestimo).toHaveBeenCalledTimes(1);
     expect(mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis).toHaveBeenCalledTimes(1);
     expect(mockLivroMovimentacoesRepositorio.emprestarLivro).toHaveBeenCalledTimes(1);
   });
@@ -109,6 +112,7 @@ describe("EmprestarLivroUseCase", () => {
 
     expect(mockLivroRepositorio.buscarLivro).toHaveBeenCalledTimes(1);
     expect(mockUsuarioRepositorio.buscarUsuario).toHaveBeenCalledTimes(0);
+    expect(mockLivroMovimentacoesRepositorio.checarEmprestimo).toHaveBeenCalledTimes(0);
     expect(mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis).toHaveBeenCalledTimes(0);
     expect(mockLivroMovimentacoesRepositorio.emprestarLivro).toHaveBeenCalledTimes(0);
   });
@@ -127,6 +131,7 @@ describe("EmprestarLivroUseCase", () => {
 
     expect(mockLivroRepositorio.buscarLivro).toHaveBeenCalledTimes(1);
     expect(mockUsuarioRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(mockLivroMovimentacoesRepositorio.checarEmprestimo).toHaveBeenCalledTimes(0);
     expect(mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis).toHaveBeenCalledTimes(0);
     expect(mockLivroMovimentacoesRepositorio.emprestarLivro).toHaveBeenCalledTimes(0);
   });
@@ -138,6 +143,7 @@ describe("EmprestarLivroUseCase", () => {
 
     mockLivroRepositorio.buscarLivro.mockResolvedValue(livroDTO);
     mockUsuarioRepositorio.buscarUsuario.mockResolvedValue(usuarioDTO);
+    mockLivroMovimentacoesRepositorio.checarEmprestimo.mockResolvedValue(false);
     mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis.mockResolvedValue(0);
 
     await expect(emprestarLivroUseCase.handle({ id_livro, id_usuario, periodo_dias })).rejects.toThrow(
@@ -146,7 +152,28 @@ describe("EmprestarLivroUseCase", () => {
 
     expect(mockLivroRepositorio.buscarLivro).toHaveBeenCalledTimes(1);
     expect(mockUsuarioRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(mockLivroMovimentacoesRepositorio.checarEmprestimo).toHaveBeenCalledTimes(1);
     expect(mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis).toHaveBeenCalledTimes(1);
+    expect(mockLivroMovimentacoesRepositorio.emprestarLivro).toHaveBeenCalledTimes(0);
+  });
+
+  test("Deve falhar se usuario já estiver com um livro do mesmo ISBN", async () => {
+    const id_livro = GerarId();
+    const id_usuario = GerarId();
+    const periodo_dias = 5;
+
+    mockLivroRepositorio.buscarLivro.mockResolvedValue(livroDTO);
+    mockUsuarioRepositorio.buscarUsuario.mockResolvedValue(usuarioDTO);
+    mockLivroMovimentacoesRepositorio.checarEmprestimo.mockResolvedValue(true);
+
+    await expect(emprestarLivroUseCase.handle({ id_livro, id_usuario, periodo_dias })).rejects.toThrow(
+      new BadRequestError("Esse usuario ja possui o livro emprestado")
+    );
+
+    expect(mockLivroRepositorio.buscarLivro).toHaveBeenCalledTimes(1);
+    expect(mockUsuarioRepositorio.buscarUsuario).toHaveBeenCalledTimes(1);
+    expect(mockLivroMovimentacoesRepositorio.checarEmprestimo).toHaveBeenCalledTimes(1);
+    expect(mockLivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis).toHaveBeenCalledTimes(0);
     expect(mockLivroMovimentacoesRepositorio.emprestarLivro).toHaveBeenCalledTimes(0);
   });
 });

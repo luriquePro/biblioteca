@@ -26,6 +26,12 @@ export class EmprestarLivroUseCase {
       throw new NotFoundError("Usuario não encontrado");
     }
 
+    // Checar se o usuario já está com esse livro emprestado
+    const usuarioComLivro = await this.LivroMovimentacoesRepositorio.checarEmprestimo({ id_livro, id_usuario });
+    if (usuarioComLivro) {
+      throw new BadRequestError("Esse usuario ja possui o livro emprestado");
+    }
+
     // Checar se o livro tem unidades disponiveis
     const unidadesDisponiveis = await this.LivroMovimentacoesRepositorio.quantidadeLivrosDisponiveis({ id_livro });
     if (unidadesDisponiveis < 1) {
