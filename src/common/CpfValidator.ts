@@ -1,6 +1,7 @@
 const CpfValidator = (cpf: string): boolean => {
-  // Testa se é uma sequencia de digitos repetidos
-  if (/^(\d)\1{10}$/.test(cpf)) {
+  // Testa se é uma sequencia de digitos repetidos]
+  const todosDigitosRepetidos = /^(\d)\1{10}$/.test(cpf);
+  if (todosDigitosRepetidos || cpf.length !== 11) {
     return false;
   }
 
@@ -38,4 +39,3 @@ const CpfValidator = (cpf: string): boolean => {
 };
 
 export { CpfValidator };
-
