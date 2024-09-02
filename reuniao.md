@@ -53,15 +53,15 @@
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
-[] Buscar livro por nome ou ISBN
-[] - Retornar livros ou Vazio
+[X] Buscar livro por nome ou ISBN
+[X] - Retornar livros ou Vazio
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
 
-[] Emprestar um livro ao usuario
-[] - A data de retorno não pode ser menor que a data de saída
-[] - Um usuário não pode estar com mais de um livro com o mesmo ISBN ao mesmo tempo
-[] - Um usuário pode ter mais de um livro com ISBN diferentes
+[X] Emprestar um livro ao usuario
+[X] - A data de retorno não pode ser menor que a data de saída
+[X] - Um usuário não pode estar com mais de um livro com o mesmo ISBN ao mesmo tempo
+[X] - Um usuário pode ter mais de um livro com ISBN diferentes
 [] - Ao cadastrar um empréstimo, será enviado um email automaticamente informando o nome do livro, nome do usuário, CPF, a data de saída e data de retorno
 [] - Criar Entidade e repositorio Mongo
 [] - Criar Rota e Controller
